@@ -28,15 +28,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('camera-form').addEventListener('submit', function(event) {
     event.preventDefault();
     
     var formData = new FormData(this);
     var url = 'https://script.google.com/u/0/home/projects/1QXSnwiAOhSADTu-aF2_qIr8WCsaQiXdernvSfN2C2a5CgfwLwp3JjNVU/edit'; // Substitua pela URL do seu script
-  
+    url += '?' + new URLSearchParams(formData).toString(); // Anexa os dados do formulário à URL
+
     fetch(url, {
-      method: 'GET',
-      body: formData
+      method: 'GET'
     })
     .then(response => {
       if (response.ok) {
@@ -48,6 +49,8 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .catch(error => console.error('Erro:', error));
   });
+});
+
 
 
   
