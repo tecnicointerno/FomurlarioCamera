@@ -12,7 +12,7 @@
 </head>
 <body>
   <h2>Formulário de Câmera</h2>
-  <form id="cameras-form" action="https://script.google.com/macros/s/AKfycbxqwRWjjSG4maS7P3tvZGGqPKGuBjuEBXNsj2gnxlzQd-M89Vw6v2XU3-tJwx0H5pRIlA/exec" method="POST">
+  <form id="cameras-form" method="POST">
     <div id="cameras-container">
       <div class="camera-section" data-camera-id="1">
         <h3>Câmera 1</h3>
@@ -75,6 +75,37 @@
         `;
         
         camerasContainer.appendChild(cameraSection);
+      });
+
+      document.getElementById('cameras-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var formData = new FormData(this);
+
+        // Monta os dados em um objeto JSON
+        var data = {};
+        for (var pair of formData.entries()) {
+          data[pair[0]] = pair[1];
+        }
+
+        // Envia os dados para o Google Apps Script
+        fetch('https://script.google.com/macros/s/AKfycbxqwRWjjSG4maS7P3tvZGGqPKGuBjuEBXNsj2gnxlzQd-M89Vw6v2XU3-tJwx0H5pRIlA/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => {
+          if (response.ok) {
+            alert('Formulário enviado com sucesso!');
+            location.reload(); // Recarrega a página após o envio do formulário
+          } else {
+            alert('Ocorreu um erro ao enviar o formulário.');
+          }
+        })
+        .catch(error => console.error('Erro:', error));
       });
     });
   </script>
