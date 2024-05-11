@@ -15,7 +15,7 @@
   <div id="cameras-container">
     <div class="camera-section">
       <h3>Câmera 1</h3>
-      <form class="camera-form" action="https://script.google.com/macros/s/AKfycbxqwRWjjSG4maS7P3tvZGGqPKGuBjuEBXNsj2gnxlzQd-M89Vw6v2XU3-tJwx0H5pRIlA/exec" method="POST">
+      <form class="camera-form" action="URL_DO_SEU_SCRIPT_DO_GOOGLE_APPS_SCRIPT" method="POST">
         <label for="rack">Rack:</label>
         <input type="text" name="rack"><br><br>
 
@@ -33,6 +33,8 @@
 
         <label for="local_camera">Local da Câmera:</label>
         <input type="text" name="local_camera"><br><br>
+
+        <button type="submit">Enviar</button>
       </form>
     </div>
   </div>
@@ -45,10 +47,10 @@
       var addCameraBtn = document.getElementById('add-camera-btn');
 
       addCameraBtn.addEventListener('click', function() {
+        var cameraCount = camerasContainer.querySelectorAll('.camera-section').length + 1;
+        
         var cameraSection = document.createElement('div');
         cameraSection.classList.add('camera-section');
-        
-        var cameraCount = camerasContainer.querySelectorAll('.camera-section').length + 1;
         cameraSection.innerHTML = `
           <h3>Câmera ${cameraCount}</h3>
           <form class="camera-form" action="URL_DO_SEU_SCRIPT_DO_GOOGLE_APPS_SCRIPT" method="POST">
@@ -69,6 +71,8 @@
 
             <label for="local_camera">Local da Câmera:</label>
             <input type="text" name="local_camera"><br><br>
+
+            <button type="submit">Enviar</button>
           </form>
         `;
         
