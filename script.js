@@ -30,29 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('camera-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    var formData = new FormData(this);
-    var url = 'https://script.google.com/macros/s/AKfycbxqwRWjjSG4maS7P3tvZGGqPKGuBjuEBXNsj2gnxlzQd-M89Vw6v2XU3-tJwx0H5pRIlA/exec'; // Substitua pela URL do seu script
-
-    fetch(url, {
-      method: 'POST',
-      body: formData,
-      mode: 'no-cors' // Adiciona a opção 'no-cors' para contornar o bloqueio de terceiros
-    })
-    .then(response => {
-      if (response.ok) {
-        alert('Formulário enviado com sucesso!');
-        location.reload(); // Recarregar a página após o envio do formulário
-      } else {
-        alert('Ocorreu um erro ao enviar o formulário.');
-      }
-    })
-    .catch(error => console.error('Erro:', error));
-  });
-});
 
 
   
