@@ -28,28 +28,32 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
- document.addEventListener('DOMContentLoaded', function () {
+
+
+document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('camera-form').addEventListener('submit', function(event) {
     event.preventDefault();
     
     var formData = new FormData(this);
     var url = 'https://script.google.com/u/0/home/projects/1QXSnwiAOhSADTu-aF2_qIr8WCsaQiXdernvSfN2C2a5CgfwLwp3JjNVU/edit'; // Substitua pela URL do seu script
-    url += '?' + new URLSearchParams(formData).toString(); // Anexa os dados do formulário à URL
+    url += '?callback=handleResponse&' + new URLSearchParams(formData).toString(); // Adiciona o callback e os dados do formulário à URL
 
-    fetch(url, {
-      method: 'GET'
-    })
-    .then(response => {
-      if (response.ok) {
-        alert('Formulário enviado com sucesso!');
-        location.reload(); // Recarregar a página após o envio do formulário
-      } else {
-        alert('Ocorreu um erro ao enviar o formulário.');
-      }
-    })
-    .catch(error => console.error('Erro:', error));
+    var script = document.createElement('script');
+    script.src = url;
+
+    document.head.appendChild(script);
   });
 });
+
+// Função para lidar com a resposta do servidor
+function handleResponse(response) {
+  if (response.result == 'Success') {
+    alert('Formulário enviado com sucesso!');
+    location.reload(); // Recarregar a página após o envio do formulário
+  } else {
+    alert('Ocorreu um erro ao enviar o formulário.');
+  }
+}
 
 
 
