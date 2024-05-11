@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var url = 'https://script.google.com/u/0/home/projects/1QXSnwiAOhSADTu-aF2_qIr8WCsaQiXdernvSfN2C2a5CgfwLwp3JjNVU/edit'; // Substitua pela URL do seu script
   
     fetch(url, {
-      method: 'POST',
+      method: 'GET',
       body: formData
     })
     .then(response => {
