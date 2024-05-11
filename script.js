@@ -36,25 +36,23 @@ document.addEventListener('DOMContentLoaded', function () {
     
     var formData = new FormData(this);
     var url = 'https://script.google.com/a/macros/ticonsulte.com.br/s/AKfycbxPKI0eMxj-DW5y8NbORnQeajx-92g6iOFQYaqceiFnm956nPCgtVfPLgVcbM-2jSWSsg/exec'; // Substitua pela URL do seu script
-    url += '?callback=handleResponse&' + new URLSearchParams(formData).toString(); // Adiciona o callback e os dados do formulário à URL
 
-    var script = document.createElement('script');
-    script.src = url;
-
-    document.head.appendChild(script);
+    fetch(url, {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors' // Adiciona a opção 'no-cors' para contornar o bloqueio de terceiros
+    })
+    .then(response => {
+      if (response.ok) {
+        alert('Formulário enviado com sucesso!');
+        location.reload(); // Recarregar a página após o envio do formulário
+      } else {
+        alert('Ocorreu um erro ao enviar o formulário.');
+      }
+    })
+    .catch(error => console.error('Erro:', error));
   });
 });
-
-// Função para lidar com a resposta do servidor
-function handleResponse(response) {
-  if (response.result == 'Success') {
-    alert('Formulário enviado com sucesso!');
-    location.reload(); // Recarregar a página após o envio do formulário
-  } else {
-    alert('Ocorreu um erro ao enviar o formulário.');
-  }
-}
-
 
 
   
