@@ -4,31 +4,77 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formulário de Câmera</title>
+  <style>
+    .camera-section {
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
   <h2>Formulário de Câmera</h2>
-  <form id="camera-form" action="https://script.google.com/macros/s/AKfycbxqwRWjjSG4maS7P3tvZGGqPKGuBjuEBXNsj2gnxlzQd-M89Vw6v2XU3-tJwx0H5pRIlA/exec" method="POST">
-    <label for="rack">Rack:</label>
-    <input type="text" id="rack" name="rack"><br><br>
+  <div id="cameras-container">
+    <div class="camera-section">
+      <h3>Câmera 1</h3>
+      <form class="camera-form" action="URL_DO_SEU_SCRIPT_DO_GOOGLE_APPS_SCRIPT" method="POST">
+        <label for="rack">Rack:</label>
+        <input type="text" name="rack"><br><br>
 
-    <label for="ip">IP:</label>
-    <input type="text" id="ip" name="ip"><br><br>
+        <label for="ip">IP:</label>
+        <input type="text" name="ip"><br><br>
 
-    <label for="nomenclatura">Nomenclatura:</label>
-    <input type="text" id="nomenclatura" name="nomenclatura"><br><br>
+        <label for="nomenclatura">Nomenclatura:</label>
+        <input type="text" name="nomenclatura"><br><br>
 
-    <label for="local_rack">Local do Rack:</label>
-    <input type="text" id="local_rack" name="local_rack"><br><br>
+        <label for="local_rack">Local do Rack:</label>
+        <input type="text" name="local_rack"><br><br>
 
-    <label for="porta_switch">Porta Switch:</label>
-    <input type="text" id="porta_switch" name="porta_switch"><br><br>
+        <label for="porta_switch">Porta Switch:</label>
+        <input type="text" name="porta_switch"><br><br>
 
-    <label for="local_camera">Local da Câmera:</label>
-    <input type="text" id="local_camera" name="local_camera"><br><br>
-    <button type="button" id="add-camera">+</button>
-    <button type="submit">Enviar</button>
-  </form>
+        <label for="local_camera">Local da Câmera:</label>
+        <input type="text" name="local_camera"><br><br>
+      </form>
+    </div>
+  </div>
+  
+  <button id="add-camera-btn">+</button>
 
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var camerasContainer = document.getElementById('cameras-container');
+      var addCameraBtn = document.getElementById('add-camera-btn');
+
+      addCameraBtn.addEventListener('click', function() {
+        var cameraSection = document.createElement('div');
+        cameraSection.classList.add('camera-section');
+        
+        var cameraCount = camerasContainer.querySelectorAll('.camera-section').length + 1;
+        cameraSection.innerHTML = `
+          <h3>Câmera ${cameraCount}</h3>
+          <form class="camera-form" action="URL_DO_SEU_SCRIPT_DO_GOOGLE_APPS_SCRIPT" method="POST">
+            <label for="rack">Rack:</label>
+            <input type="text" name="rack"><br><br>
+
+            <label for="ip">IP:</label>
+            <input type="text" name="ip"><br><br>
+
+            <label for="nomenclatura">Nomenclatura:</label>
+            <input type="text" name="nomenclatura"><br><br>
+
+            <label for="local_rack">Local do Rack:</label>
+            <input type="text" name="local_rack"><br><br>
+
+            <label for="porta_switch">Porta Switch:</label>
+            <input type="text" name="porta_switch"><br><br>
+
+            <label for="local_camera">Local da Câmera:</label>
+            <input type="text" name="local_camera"><br><br>
+          </form>
+        `;
+        
+        camerasContainer.appendChild(cameraSection);
+      });
+    });
+  </script>
 </body>
 </html>
