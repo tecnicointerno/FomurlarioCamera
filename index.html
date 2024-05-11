@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Câmeras</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <form id="camera-form">
+    <div id="camera-container">
+      <div class="camera">
+        <h2>Câmera 1</h2>
+        <label for="rack">Rack:</label>
+        <input type="text" name="rack" id="rack">
+        <label for="ip">IP:</label>
+        <input type="text" name="ip" id="ip">
+        <label for="nomenclatura">Nomenclatura:</label>
+        <input type="text" name="nomenclatura" id="nomenclatura">
+        <label for="local-rack">Local do Rack:</label>
+        <input type="text" name="local-rack" id="local-rack">
+        <label for="porta-switch">Porta Switch:</label>
+        <input type="text" name="porta-switch" id="porta-switch">
+        <label for="local-camera">Local da Câmera:</label>
+        <input type="text" name="local-camera" id="local-camera">
+      </div>
+    </div>
+    <button type="button" id="add-camera">+</button>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
