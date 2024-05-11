@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     event.preventDefault();
     
     var formData = new FormData(this);
-    var url = 'https://script.google.com/u/0/home/projects/1QXSnwiAOhSADTu-aF2_qIr8WCsaQiXdernvSfN2C2a5CgfwLwp3JjNVU/edit'; // Substitua pela URL do seu script
+    var url = 'https://script.google.com/a/macros/ticonsulte.com.br/s/AKfycbxPKI0eMxj-DW5y8NbORnQeajx-92g6iOFQYaqceiFnm956nPCgtVfPLgVcbM-2jSWSsg/exec'; // Substitua pela URL do seu script
     url += '?callback=handleResponse&' + new URLSearchParams(formData).toString(); // Adiciona o callback e os dados do formulário à URL
 
     var script = document.createElement('script');
