@@ -84,7 +84,7 @@
         var formData = new FormData(this);
 
         // Preparar a URL com os dados do formulário
-        var url = 'URL_DO_SEU_SCRIPT_DO_GOOGLE_APPS_SCRIPT?' + new URLSearchParams(formData).toString();
+        var url = 'https://script.google.com/macros/s/AKfycbxqwRWjjSG4maS7P3tvZGGqPKGuBjuEBXNsj2gnxlzQd-M89Vw6v2XU3-tJwx0H5pRIlA/exec' + new URLSearchParams(formData).toString();
 
         // Enviar a solicitação GET
         fetch(url)
