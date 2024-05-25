@@ -12,27 +12,27 @@
 </head>
 <body>
   <h2>Formulário de Câmera</h2>
-  <form id="cameras-form" action="https://script.google.com/macros/s/AKfycbxqwRWjjSG4maS7P3tvZGGqPKGuBjuEBXNsj2gnxlzQd-M89Vw6v2XU3-tJwx0H5pRIlA/exec" method="POST">
+  <form id="cameras-form" action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" method="POST">
     <div id="cameras-container">
       <div class="camera-section" data-camera-id="1">
         <h3>Câmera 1</h3>
         <label for="rack1">Rack:</label>
-        <input type="text" id="rack1" name="Rack"><br><br>
+        <input type="text" id="rack1" name="Rack1"><br><br>
 
         <label for="ip1">IP:</label>
-        <input type="text" id="ip1" name="Ip"><br><br>
+        <input type="text" id="ip1" name="Ip1"><br><br>
 
         <label for="nomenclatura1">Nomenclatura:</label>
-        <input type="text" id="nomenclatura1" name="Nomenclatura"><br><br>
+        <input type="text" id="nomenclatura1" name="Nomenclatura1"><br><br>
 
         <label for="local_rack1">Local do Rack:</label>
-        <input type="text" id="local_rack1" name="Local_rack"><br><br>
+        <input type="text" id="local_rack1" name="Local_rack1"><br><br>
 
         <label for="porta_switch1">Porta Switch:</label>
-        <input type="text" id="porta_switch1" name="Porta_switch"><br><br>
+        <input type="text" id="porta_switch1" name="Porta_switch1"><br><br>
 
         <label for="local_camera1">Local da Câmera:</label>
-        <input type="text" id="local_camera1" name="Local_camera"><br><br>
+        <input type="text" id="local_camera1" name="Local_camera1"><br><br>
       </div>
     </div>
     
@@ -44,34 +44,34 @@
     document.addEventListener('DOMContentLoaded', function () {
       var camerasContainer = document.getElementById('cameras-container');
       var addCameraBtn = document.getElementById('add-camera-btn');
-      var cameraCount = 1; // Inicializa o contador de câmeras
+      var cameraCount = 1;
 
       addCameraBtn.addEventListener('click', function() {
-        cameraCount++; // Incrementa o contador de câmeras
-        
+        cameraCount++;
+
         var cameraSection = document.createElement('div');
         cameraSection.classList.add('camera-section');
-        cameraSection.dataset.cameraId = cameraCount; // Define o ID da câmera
+        cameraSection.dataset.cameraId = cameraCount;
 
         cameraSection.innerHTML = `
           <h3>Câmera ${cameraCount}</h3>
           <label for="rack${cameraCount}">Rack:</label>
-          <input type="text" id="Rack${cameraCount}" name="Rack${cameraCount}"><br><br>
+          <input type="text" id="rack${cameraCount}" name="Rack${cameraCount}"><br><br>
 
           <label for="ip${cameraCount}">IP:</label>
-          <input type="text" id="Ip${cameraCount}" name="Ip${cameraCount}"><br><br>
+          <input type="text" id="ip${cameraCount}" name="Ip${cameraCount}"><br><br>
 
           <label for="nomenclatura${cameraCount}">Nomenclatura:</label>
-          <input type="text" id="Nomenclatura${cameraCount}" name="Nomenclatura${cameraCount}"><br><br>
+          <input type="text" id="nomenclatura${cameraCount}" name="Nomenclatura${cameraCount}"><br><br>
 
           <label for="local_rack${cameraCount}">Local do Rack:</label>
-          <input type="text" id="Local_rack${cameraCount}" name="Local_rack${cameraCount}"><br><br>
+          <input type="text" id="local_rack${cameraCount}" name="Local_rack${cameraCount}"><br><br>
 
           <label for="porta_switch${cameraCount}">Porta Switch:</label>
-          <input type="text" id="Porta_switch${cameraCount}" name="Porta_switch${cameraCount}"><br><br>
+          <input type="text" id="porta_switch${cameraCount}" name="Porta_switch${cameraCount}"><br><br>
 
           <label for="local_camera${cameraCount}">Local da Câmera:</label>
-          <input type="text" id="Local_camera${cameraCount}" name="Local_camera${cameraCount}"><br><br>
+          <input type="text" id="local_camera${cameraCount}" name="Local_camera${cameraCount}"><br><br>
         `;
         
         camerasContainer.appendChild(cameraSection);
