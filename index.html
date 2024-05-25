@@ -1,72 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <title>Camera Information Form</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Câmera</title>
+  <style>
+    .camera-section {
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Camera Information Form</h1>
-  <form id="camera-form"  action="https://script.google.com/macros/s/AKfycbxqwRWjjSG4maS7P3tvZGGqPKGuBjuEBXNsj2gnxlzQd-M89Vw6v2XU3-tJwx0H5pRIlA/exec" method="POST"  >
-    <table id="camera-table">
-      <thead>
-        <tr>
-          <th>Rack</th>
-          <th>IP</th>
-          <th>Local do Rack</th>
-          <th>Nomenclatura</th>
-          <th>Porta Switch</th>
-          <th>Local da Camera</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" name="rack[]"></td>
-          <td><input type="text" name="ip[]"></td>
-          <td><input type="text" name="local-do-rack[]"></td>
-          <td><input type="text" name="nomenclatura[]"></td>
-          <td><input type="text" name="porta-switch[]"></td>
-          <td><input type="text" name="local-da-camera[]"></td>
-        </tr>
-      </tbody>
-    </table>
-    <button type="button" id="add-camera">Add Camera</button>
-    <button type="submit">Send to Google Sheets</button>
+  <h2>Formulário de Câmera</h2>
+  <form id="cameras-form" action="https://script.google.com/macros/s/AKfycbxqwRWjjSG4maS7P3tvZGGqPKGuBjuEBXNsj2gnxlzQd-M89Vw6v2XU3-tJwx0H5pRIlA/exec" method="POST">
+    <div id="cameras-container">
+      <div class="camera-section" data-camera-id="1">
+        <h3>Câmera 1</h3>
+        <label for="rack1">Rack:</label>
+        <input type="text" id="rack1" name="Rack1"><br><br>
+
+        <label for="ip1">IP:</label>
+        <input type="text" id="ip1" name="Ip1"><br><br>
+
+        <label for="nomenclatura1">Nomenclatura:</label>
+        <input type="text" id="nomenclatura1" name="Nomenclatura1"><br><br>
+
+        <label for="local_rack1">Local do Rack:</label>
+        <input type="text" id="local_rack1" name="Local_rack1"><br><br>
+
+        <label for="porta_switch1">Porta Switch:</label>
+        <input type="text" id="porta_switch1" name="Porta_switch1"><br><br>
+
+        <label for="local_camera1">Local da Câmera:</label>
+        <input type="text" id="local_camera1" name="Local_camera1"><br><br>
+      </div>
+    </div>
+    
+    <button id="add-camera-btn" type="button">+</button>
+    <button type="submit">Enviar</button>
   </form>
 
   <script>
-    $(document).ready(function() {
-      $('#add-camera').click(function() {
-        var newRow = `
-          <tr>
-            <td><input type="text" name="rack[]"></td>
-            <td><input type="text" name="ip[]"></td>
-            <td><input type="text" name="local-do-rack[]"></td>
-            <td><input type="text" name="nomenclatura[]"></td>
-            <td><input type="text" name="porta-switch[]"></td>
-            <td><input type="text" name="local-da-camera[]"></td>
-          </tr>
+    document.addEventListener('DOMContentLoaded', function () {
+      var camerasContainer = document.getElementById('cameras-container');
+      var addCameraBtn = document.getElementById('add-camera-btn');
+      var cameraCount = 1;
+
+      addCameraBtn.addEventListener('click', function() {
+        cameraCount++;
+
+        var cameraSection = document.createElement('div');
+        cameraSection.classList.add('camera-section');
+        cameraSection.dataset.cameraId = cameraCount;
+
+        cameraSection.innerHTML = `
+          <h3>Câmera ${cameraCount}</h3>
+          <label for="rack${cameraCount}">Rack:</label>
+          <input type="text" id="rack${cameraCount}" name="Rack${cameraCount}"><br><br>
+
+          <label for="ip${cameraCount}">IP:</label>
+          <input type="text" id="ip${cameraCount}" name="Ip${cameraCount}"><br><br>
+
+          <label for="nomenclatura${cameraCount}">Nomenclatura:</label>
+          <input type="text" id="nomenclatura${cameraCount}" name="Nomenclatura${cameraCount}"><br><br>
+
+          <label for="local_rack${cameraCount}">Local do Rack:</label>
+          <input type="text" id="local_rack${cameraCount}" name="Local_rack${cameraCount}"><br><br>
+
+          <label for="porta_switch${cameraCount}">Porta Switch:</label>
+          <input type="text" id="porta_switch${cameraCount}" name="Porta_switch${cameraCount}"><br><br>
+
+          <label for="local_camera${cameraCount}">Local da Câmera:</label>
+          <input type="text" id="local_camera${cameraCount}" name="Local_camera${cameraCount}"><br><br>
         `;
-        $('#camera-table tbody').append(newRow);
-      });
-
-      $('#camera-form').submit(function(event) {
-        event.preventDefault();
-        var formData = $(this).serialize();
-
-        var sheetName = "Formulario_Camera"; // Replace with your Google Sheets sheet name
-        var scriptUrl = "https://script.google.com/macros/s/AKfycbxqwRWjjSG4maS7P3tvZGGqPKGuBjuEBXNsj2gnxlzQd-M89Vw6v2XU3-tJwx0H5pRIlA/exec"; // Replace with your Google Apps Script URL
-
-        $.ajax({
-          type: "POST",
-          url: scriptUrl,
-          data: formData,
-          success: function(data) {
-            console.log("Data sent successfully!");
-          },
-          error: function(xhr, status, error) {
-            console.log("Error sending data: " + error);
-          }
-        });
+        
+        camerasContainer.appendChild(cameraSection);
       });
     });
   </script>
